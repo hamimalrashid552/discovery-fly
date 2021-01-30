@@ -122,3 +122,11 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+#second-page{
+    margin: 100px;
+    color: white;
+    display: none;
+}
+.margin{
+    margin-top: 200px;
+}

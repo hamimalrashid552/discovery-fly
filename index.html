@@ -16,7 +16,7 @@
 
 <body>
     <!--Header and Menu Section-->
-    <header class="container">
+    <header id="header" class="container">
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -29,7 +29,7 @@
 
     <!--Booking Section-->
     <main class="main-content container">
-        <div class="booking-form">
+        <div id="booking-area" class="booking-form">
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -102,16 +102,27 @@
                     </div>
                 </div>
             </div>
-            <button onclick="alert('Are you sure you want to book now?')" class="btn-style">Book Now</button>
+            <button onclick="alert('Are you sure you want to book now?')" id="book-now" class="btn-style">Book
+                Now</button>
         </div>
 
-        <div class="booking-content">
+        <div id="content" class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
                 veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
                 voluptatibus quam</p>
         </div>
-        </section>
+        <div id="second-page">
+            <div>
+                <h1>Your ticket is ready to use</h1>
+                <h4>Thank you for using our airlines.</h4>
+            </div>
+            <div>
+                <button id="book-again" class="btn-style margin"> Book again</button>
+            </div>
+
+        </div>
+
 
         <!--Thank You-->
         <script>
@@ -125,7 +136,7 @@
                 if (isIncrease == false && sitClassCount > 0) {
                     sitClassNewCount = sitClassCount - 1;
                 }
-                document.getElementById(sitClass+'-count').value = sitClassNewCount;
+                document.getElementById(sitClass + '-count').value = sitClassNewCount;
                 let sitClassTotal = 0;
                 if (sitClass == 'first') {
                     sitClassTotal = sitClassNewCount * 150;
@@ -133,7 +144,6 @@
                 if (sitClass == 'economy') {
                     sitClassTotal = sitClassNewCount * 100;
                 }
-
                 calculateTotal()
             }
 
@@ -145,11 +155,10 @@
                 document.getElementById('sub-total').innerText = '$' + subTotal;
 
                 const vat = subTotal * 0.1;
-                document.getElementById('vat-amount').innerText ='$' + vat;
+                document.getElementById('vat-amount').innerText = '$' + vat;
 
                 const grandTotal = subTotal + vat;
-                document.getElementById('grand-total').innerText ='$' + grandTotal;
-
+                document.getElementById('grand-total').innerText = '$' + grandTotal;
             }
 
             function getInputeValue(sitClass) {
@@ -157,55 +166,22 @@
                 const sitClassCount = parseInt(sitClassInput.value);
                 return sitClassCount;
             }
-
-            // function handleFirstChange(isIncrease){
-            //     const firstInput = document.getElementById('first-count');
-            //     const firstCount = parseInt(firstInput.value);
-            //     let firstNewCount = firstCount;
-            //     if(isIncrease == true){
-            //         firstNewCount = firstCount + 1;
-            //     }
-            //     if(isIncrease == false && firstCount > 0){
-            //         firstNewCount = firstCount - 1;
-            //     }
-            //     firstInput.value = firstNewCount;
-            //     const firstTotal = firstNewCount * 150;
-            //     document.getElementById('sub-total').innerText = '$' + firstTotal;
-            // }
-
-            // function handleEconomyChange(isIncrease){
-            //     const economyInput = document.getElementById('economy-count');
-            //     const economyCount = parseInt(economyInput.value);
-            //     let economyNewCount = economyCount;
-            //     if(isIncrease == true){
-            //         economyNewCount = economyCount + 1;
-            //     }
-            //     if(isIncrease == false && economyCount > 0){
-            //         economyNewCount = economyCount - 1;
-            //     }
-            //     economyInput.value = economyNewCount;
-            //     const economyTotal = economyNewCount * 100;
-            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
-            // }
-
-            // document.getElementById('economy-increase').addEventListener('click', function () {
-            //     const economyInput = document.getElementById('economy-count');
-            //     const economyCount = parseInt(economyInput.value);
-            //     const economyNewCount = economyCount + 1;
-            //     economyInput.value = economyNewCount;
-            //     const economyTotal = economyNewCount * 100;
-            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
-            // });
-            // document.getElementById('economy-decrease').addEventListener('click', function () {
-            //     const economyInput = document.getElementById('economy-count');
-            //     const economyCount = parseInt(economyInput.value);
-            //     const economyNewCount = economyCount - 1;
-            //     economyInput.value = economyNewCount;
-            //     const economyTotal = economyNewCount * 100;
-            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
-            // })
-
+            //for opening next page
+            const bookButton = document.getElementById('book-now').addEventListener('click', function () {
+                document.getElementById('booking-area').style.display = "none";
+                document.getElementById('content').style.display = "none";
+                document.getElementById('header').style.display = "none";
+                document.getElementById('second-page').style.display = "block";
+            })
+            // for going back 
+            const bookAgain = document.getElementById('book-again').addEventListener('click',function(){
+                document.getElementById('second-page').style.display = "none";
+                document.getElementById('booking-area').style.display = "block";
+                document.getElementById('content').style.display = "block";
+                document.getElementById('header').style.display = "block";
+            })
         </script>
+    </main>
 </body>
 
 </html>
