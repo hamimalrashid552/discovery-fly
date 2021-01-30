@@ -56,12 +56,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button class="plus-minus-btn">
-                            <span>+</span>
-                        </button>
-                        <button class="plus-minus-btn">
-                            <span>-</span>
-                        </button>
+                        <button class="plus-minus-btn">+</button>
+                        <button class="plus-minus-btn">-</button>
                     </p>
                 </div>
             </div>
@@ -73,12 +69,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button id="economy-increase" class="plus-minus-btn">
-                            <span>+</span>
-                        </button>
-                        <button class="plus-minus-btn">
-                            <span>-</span>
-                        </button>
+                        <button id="economy-increase" class="plus-minus-btn">+</button>
+                        <button id="economy-decrease" class="plus-minus-btn">-</button>
                     </p>
                 </div>
             </div>
@@ -127,6 +119,14 @@
                 const economyInput = document.getElementById('economy-count');
                 const economyCount = parseInt(economyInput.value);
                 const economyNewCount = economyCount + 1;
+                economyInput.value = economyNewCount;
+                const economyTotal = economyNewCount * 100;
+                document.getElementById('sub-total').innerText = '$' + economyTotal;
+            });
+            document.getElementById('economy-decrease').addEventListener('click', function () {
+                const economyInput = document.getElementById('economy-count');
+                const economyCount = parseInt(economyInput.value);
+                const economyNewCount = economyCount - 1;
                 economyInput.value = economyNewCount;
                 const economyTotal = economyNewCount * 100;
                 document.getElementById('sub-total').innerText = '$' + economyTotal;
