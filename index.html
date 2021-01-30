@@ -133,7 +133,19 @@
                 if(sitClass == 'economy'){
                     sitClassTotal = sitClassNewCount * 100;
                 }
-                document.getElementById('sub-total').innerText = '$' + sitClassTotal;
+                
+                calculateTotal()
+            }
+
+            function calculateTotal(){
+                const firstInput = document.getElementById('first-count');
+                const firstCount = parseInt(firstInput.value);
+
+                const economyInput = document.getElementById('economy-count');
+                const economyCount = parseInt(economyInput.value);
+
+                const subTotal = firstCount * 150 + economyCount * 100;
+                document.getElementById('sub-total').innerText = '$' + subTotal;
             }
 
             // function handleFirstChange(isIncrease){
