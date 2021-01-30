@@ -52,12 +52,12 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="first-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button class="plus-minus-btn">+</button>
-                        <button class="plus-minus-btn">-</button>
+                        <button onclick="handleClassChange('first',true)" class="plus-minus-btn">+</button>
+                        <button onclick="handleClassChange('first',false)" class="plus-minus-btn">-</button>
                     </p>
                 </div>
             </div>
@@ -69,8 +69,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button onclick="handlePlanChange(true)" id="economy-increase" class="plus-minus-btn">+</button>
-                        <button onclick="handlePlanChange(false)" id="economy-decrease" class="plus-minus-btn">-</button>
+                        <button onclick="handleClassChange('economy',true)" class="plus-minus-btn">+</button>
+                        <button onclick="handleClassChange('economy',false)" class="plus-minus-btn">-</button>
                     </p>
                 </div>
             </div>
@@ -115,20 +115,56 @@
 
         <!--Thank You-->
         <script>
-            function handlePlanChange(isIncrease){
-                const economyInput = document.getElementById('economy-count');
-                const economyCount = parseInt(economyInput.value);
-                let economyNewCount = economyCount;
+            function handleClassChange(sitClass, isIncrease){
+                const sitClassInput = document.getElementById(sitClass +'-count');
+                const sitClassCount = parseInt(sitClassInput.value);
+                let sitClassNewCount = sitClassCount;
                 if(isIncrease == true){
-                    economyNewCount = economyCount + 1;
+                    sitClassNewCount = sitClassCount + 1;
                 }
-                if(isIncrease == false && economyCount > 0){
-                    economyNewCount = economyCount - 1;
+                if(isIncrease == false && sitClassCount > 0){
+                    sitClassNewCount = sitClassCount - 1;
                 }
-                economyInput.value = economyNewCount;
-                const economyTotal = economyNewCount * 100;
-                document.getElementById('sub-total').innerText = '$' + economyTotal;
+                sitClassInput.value = sitClassNewCount;
+                let sitClassTotal = 0;
+                if(sitClass == 'first'){
+                    sitClassTotal = sitClassNewCount * 150;
+                }
+                if(sitClass == 'economy'){
+                    sitClassTotal = sitClassNewCount * 100;
+                }
+                document.getElementById('sub-total').innerText = '$' + sitClassTotal;
             }
+
+            // function handleFirstChange(isIncrease){
+            //     const firstInput = document.getElementById('first-count');
+            //     const firstCount = parseInt(firstInput.value);
+            //     let firstNewCount = firstCount;
+            //     if(isIncrease == true){
+            //         firstNewCount = firstCount + 1;
+            //     }
+            //     if(isIncrease == false && firstCount > 0){
+            //         firstNewCount = firstCount - 1;
+            //     }
+            //     firstInput.value = firstNewCount;
+            //     const firstTotal = firstNewCount * 150;
+            //     document.getElementById('sub-total').innerText = '$' + firstTotal;
+            // }
+
+            // function handleEconomyChange(isIncrease){
+            //     const economyInput = document.getElementById('economy-count');
+            //     const economyCount = parseInt(economyInput.value);
+            //     let economyNewCount = economyCount;
+            //     if(isIncrease == true){
+            //         economyNewCount = economyCount + 1;
+            //     }
+            //     if(isIncrease == false && economyCount > 0){
+            //         economyNewCount = economyCount - 1;
+            //     }
+            //     economyInput.value = economyNewCount;
+            //     const economyTotal = economyNewCount * 100;
+            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
+            // }
 
             // document.getElementById('economy-increase').addEventListener('click', function () {
             //     const economyInput = document.getElementById('economy-count');
