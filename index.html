@@ -89,7 +89,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="vat-amount">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -98,11 +98,11 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p id="grand-total">$0</p>
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button onclick="alert('Are you sure you want to book now?')" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -115,37 +115,47 @@
 
         <!--Thank You-->
         <script>
-            function handleClassChange(sitClass, isIncrease){
-                const sitClassInput = document.getElementById(sitClass +'-count');
+            function handleClassChange(sitClass, isIncrease) {
+                const sitClassInput = document.getElementById(sitClass + '-count');
                 const sitClassCount = parseInt(sitClassInput.value);
                 let sitClassNewCount = sitClassCount;
-                if(isIncrease == true){
+                if (isIncrease == true) {
                     sitClassNewCount = sitClassCount + 1;
                 }
-                if(isIncrease == false && sitClassCount > 0){
+                if (isIncrease == false && sitClassCount > 0) {
                     sitClassNewCount = sitClassCount - 1;
                 }
-                sitClassInput.value = sitClassNewCount;
+                document.getElementById(sitClass+'-count').value = sitClassNewCount;
                 let sitClassTotal = 0;
-                if(sitClass == 'first'){
+                if (sitClass == 'first') {
                     sitClassTotal = sitClassNewCount * 150;
                 }
-                if(sitClass == 'economy'){
+                if (sitClass == 'economy') {
                     sitClassTotal = sitClassNewCount * 100;
                 }
-                
+
                 calculateTotal()
             }
 
-            function calculateTotal(){
-                const firstInput = document.getElementById('first-count');
-                const firstCount = parseInt(firstInput.value);
-
-                const economyInput = document.getElementById('economy-count');
-                const economyCount = parseInt(economyInput.value);
+            function calculateTotal() {
+                const firstCount = getInputeValue('first');
+                const economyCount = getInputeValue('economy');
 
                 const subTotal = firstCount * 150 + economyCount * 100;
                 document.getElementById('sub-total').innerText = '$' + subTotal;
+
+                const vat = subTotal * 0.1;
+                document.getElementById('vat-amount').innerText ='$' + vat;
+
+                const grandTotal = subTotal + vat;
+                document.getElementById('grand-total').innerText ='$' + grandTotal;
+
+            }
+
+            function getInputeValue(sitClass) {
+                const sitClassInput = document.getElementById(sitClass + '-count');
+                const sitClassCount = parseInt(sitClassInput.value);
+                return sitClassCount;
             }
 
             // function handleFirstChange(isIncrease){
