@@ -69,8 +69,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button id="economy-increase" class="plus-minus-btn">+</button>
-                        <button id="economy-decrease" class="plus-minus-btn">-</button>
+                        <button onclick="handlePlanChange(true)" id="economy-increase" class="plus-minus-btn">+</button>
+                        <button onclick="handlePlanChange(false)" id="economy-decrease" class="plus-minus-btn">-</button>
                     </p>
                 </div>
             </div>
@@ -115,22 +115,37 @@
 
         <!--Thank You-->
         <script>
-            document.getElementById('economy-increase').addEventListener('click', function () {
+            function handlePlanChange(isIncrease){
                 const economyInput = document.getElementById('economy-count');
                 const economyCount = parseInt(economyInput.value);
-                const economyNewCount = economyCount + 1;
+                let economyNewCount = economyCount;
+                if(isIncrease == true){
+                    economyNewCount = economyCount + 1;
+                }
+                if(isIncrease == false && economyCount > 0){
+                    economyNewCount = economyCount - 1;
+                }
                 economyInput.value = economyNewCount;
                 const economyTotal = economyNewCount * 100;
                 document.getElementById('sub-total').innerText = '$' + economyTotal;
-            });
-            document.getElementById('economy-decrease').addEventListener('click', function () {
-                const economyInput = document.getElementById('economy-count');
-                const economyCount = parseInt(economyInput.value);
-                const economyNewCount = economyCount - 1;
-                economyInput.value = economyNewCount;
-                const economyTotal = economyNewCount * 100;
-                document.getElementById('sub-total').innerText = '$' + economyTotal;
-            })
+            }
+
+            // document.getElementById('economy-increase').addEventListener('click', function () {
+            //     const economyInput = document.getElementById('economy-count');
+            //     const economyCount = parseInt(economyInput.value);
+            //     const economyNewCount = economyCount + 1;
+            //     economyInput.value = economyNewCount;
+            //     const economyTotal = economyNewCount * 100;
+            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
+            // });
+            // document.getElementById('economy-decrease').addEventListener('click', function () {
+            //     const economyInput = document.getElementById('economy-count');
+            //     const economyCount = parseInt(economyInput.value);
+            //     const economyNewCount = economyCount - 1;
+            //     economyInput.value = economyNewCount;
+            //     const economyTotal = economyNewCount * 100;
+            //     document.getElementById('sub-total').innerText = '$' + economyTotal;
+            // })
 
         </script>
 </body>
